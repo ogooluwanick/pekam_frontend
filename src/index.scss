@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Roboto:wght@500&display=swap');
+
+:root{
+        --primary-green : #005700 ;
+        --secondary-green : #9FF676 ;
+        --bg-offwite : #F7F7F4 ;
+        --grayscale : #222D33 ;
+}
+
+html,body, * {
+        padding: 0;
+        margin: 0;
+        font-family: 'Raleway', sans-serif;
+        box-sizing: border-box;        
+        scroll-behavior: smooth;
+}
+
+
+
+body{
+        background-color: var(--bg-offwite) !important;
+        color: var(--grayscale) !important;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+}
+      
+      
+::-webkit-scrollbar {
+        width: 0px;
+}

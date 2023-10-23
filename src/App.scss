@@ -1,0 +1,33 @@
+main{
+        width: 100vw;
+        height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6{
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+}
+
+a {
+        color: inherit;
+        text-decoration: none;
+}
+
+button{
+        all:unset;
+        cursor: pointer;
+        &::selection{
+                background: none;
+        }
+}      
+.black-overlay{
+        width: 100vw;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 110    !important;
+        /* will-change: transform; */
+        transition: all 1s ease-in-out;
+}

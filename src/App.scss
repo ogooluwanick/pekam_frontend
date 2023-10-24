@@ -144,6 +144,10 @@ button{
                 line-height: 22px;
                 letter-spacing: 0.25px;
                 color: #C2C2C2;
+
+                &.error{
+                        color: #FA6D6D;
+                }
         }
 
 
@@ -161,6 +165,10 @@ button{
         width: 100%;
         margin: 0 auto;
         transition: all .3s ease-in-out;
+
+        &:disabled{
+                filter: grayscale(100%);
+        }
         
         &:focus, &:hover{
                 opacity: 0.5;

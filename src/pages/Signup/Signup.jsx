@@ -42,7 +42,7 @@ const Signup = () => {
                 catch (err) {
                         console.log("data",err)
 
-                        toast.error("Login unsuccessful",
+                        toast.error("Signup unsuccessful",
                         {     
                                 duration: 3500,
                         });

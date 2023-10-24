@@ -16,24 +16,24 @@ const Signin = () => {
         const [showpass, setShowpass] = useState(false)
         const [loading, setLoading] = useState(false)
 
-        const submitHandler = async ({ fname, lname, username, password }) =>{
-                console.log("test",fname, lname, username, password)
+        const submitHandler = async ({ username, password }) =>{
+                console.log("test", username, password)
 
                 setLoading(true)
 
                 try {
-                        let data = await axios.post('/api/user/register', {
-                                fname,
-                                lname,
+                        let data = await axios.post('/api/user/login', {
                                 username,
                                 password,
                         });
 
                         console.log("data",data)
                         
-                        toast.success(data.data.message,
-                        {     duration: 3500,
-                        })
+                        toast.success(data.data.message,{ duration: 3500,})
+
+                        setValue("username","")
+                        setValue("password","")
+
                 } 
                 catch (err) {
                         console.log("data",err)
@@ -55,41 +55,17 @@ const Signin = () => {
                         <span>Pakam</span>
                 </div>
 
-                <h1>Create Account</h1>
+                <h1>Login</h1>
 
                 <form onSubmit={handleSubmit(submitHandler)}>
                         <div className="grid-container">
-
-                                <div className="formController">
-                                        <label htmlFor="fname">First name</label>
-                                        <input type="text" name='fname' placeholder='Enter your First name' autoFocus disabled={loading}
-                                                {...register(      "fname",
-                                                                        {
-                                                                                required:"Don't forget your first name. 😂",
-                                                                        })
-                                                }
-                                        />
-                                        {errors.fname ? <p className=' desc error' >{errors.fname.message}</p> : "" }
-                                </div>
-                                <div className="formController">
-                                        <label htmlFor="lname">Last name</label>
-                                        <input type="text" name='lname' placeholder='Enter your Last name'  disabled={loading}
-                                                {...register(      "lname",
-                                                        {
-                                                                required:"Don't forget your last name. 😂",
-                                                        })
-                                                }
-                                        />
-                                        {errors.lname ? <p className=' desc error' >{errors.lname.message}</p> : "" }
-                                </div>
                                 <div className="formController">
                                         <label htmlFor="username">Username</label>
                                         <input type="text" name='username' placeholder='Enter your username'  disabled={loading}
                                                 {
                                                         ...register(      "username",
                                                                                 {
-                                                                                        required:"You need a unique username. 😭",
-                                                                                        minLength:{value: 5 , message:"A little longer please. 😭"}
+                                                                                        required:"Kindly provide your username. 😭",
                                                                                 }
                                                                         )
                                                 } 
@@ -103,8 +79,7 @@ const Signin = () => {
                                                 {
                                                 ...register(      "password",
                                                                         {
-                                                                                required:"Come on, Don't forget the new password. 😭",
-                                                                                minLength:{value: 6 , message:"The password should longer. 😭"}
+                                                                                required:"Kindly provide your password. 😭",
                                                                         }
                                                                 )
                                                 } 

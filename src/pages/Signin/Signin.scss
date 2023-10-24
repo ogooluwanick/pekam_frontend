@@ -1,16 +1,20 @@
 
 form{
         width: 100%;
+        max-width: 420px;
 }
 
 .grid-container {
         margin-top: 35px;
-
         width: 100%;
 
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 41px 43px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 16px;
+
+        
 
         .grid-item {
                 background-color: #3498db;
@@ -19,15 +23,13 @@ form{
                 text-align: center;
         }
 
-        @media (max-width: 720px) {
-                grid-template-columns: 1fr;
-        }
+        
           
 }
 
 .btn_box{
         width: 100%;
         max-width: 420px;   
-        margin: 66px auto 16px auto  ;  
+        margin: 16px auto 16px auto  ;  
 
 }

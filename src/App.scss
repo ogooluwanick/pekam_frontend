@@ -4,8 +4,11 @@ main{
 }
 
 h1, h2, h3, h4, h5, h6{
-        font-family: 'Roboto', sans-serif;
         font-weight: 700;
+        font-size: 24px;
+        line-height: 38px;
+        letter-spacing: 0.2px;
+        color: var(--grayscale);
 }
 
 a {
@@ -19,7 +22,8 @@ button{
         &::selection{
                 background: none;
         }
-}      
+}   
+
 .black-overlay{
         width: 100vw;
         height: 100%;
@@ -30,4 +34,166 @@ button{
         z-index: 110    !important;
         /* will-change: transform; */
         transition: all 1s ease-in-out;
+}
+
+.pageDialog{
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: center;        
+        align-items: center;
+        flex-direction: column;
+
+        >section{
+                width: 100%;
+                height: 100%;
+                max-width: 940px;
+                max-height: 697px;
+                padding:  52px 27.5px;
+                border-radius: 15px;
+                background-color: #fff;
+
+                display: flex;
+                justify-content: center;        
+                align-items: center;
+                flex-direction: column;
+
+
+        }
+}
+
+.global_logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        margin-bottom: 16px;
+
+        img{
+                width: 37px;
+                height: 42.69px;
+                object-fit: contain;
+        }
+
+        span{
+                font-family: 'Roboto', sans-serif;
+                color: var(--primary-green);
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 23.44px;
+                letter-spacing: .1px;
+        }
+}
+
+.formController{
+        position: relative;
+        width: 100%;
+
+
+        label{
+                margin-bottom: 2px;
+                display: block;
+
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 22px;
+                letter-spacing: 0.25px;
+        }
+
+        input{
+                width: 100%;
+                border-radius: 8px;
+                padding: 13px 44px 13px 17px;
+                border: 1px solid #E5E7EB;
+                transition: border .25s ease-in-out;
+                line-height: 22px;
+                font-size: 16px;
+                letter-spacing: 0.75px;
+                
+                &::placeholder{
+                        font-weight: 400;
+                        color: var(--grayscale);
+                }
+
+                &:disabled{
+                        filter: grayscale(100%);
+                }
+
+                &:focus, &:hover{
+                        border: 1px solid #0066F5;
+                        outline: none;
+                }
+        }
+
+        svg{
+                position: absolute;
+                right: 17px;
+                top: 37px;
+                cursor: pointer;
+
+                width: 24px;
+                height: 24px;
+                
+        }
+
+        .desc{
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 22px;
+                letter-spacing: 0.25px;
+                color: #C2C2C2;
+        }
+
+
+}
+
+.primary_btn{
+        background-color: var(--primary-green);
+        color: #fff;
+        padding: 14px 0px 14px 0px;
+        border-radius: 12px;
+        line-height: 22px;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        width: 100%;
+        margin: 0 auto;
+        transition: all .3s ease-in-out;
+        
+        &:focus, &:hover{
+                opacity: 0.5;
+        }
+}
+
+.helperLinks{
+        padding: 10px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.25px;
+        color: #464F54;
+
+        span, a{
+                color: var(--primary-green);
+                cursor: pointer;
+                margin-left: 5px;
+                font-weight: 500;
+
+                &:focus, &:hover{
+                        text-decoration: underline;
+                }
+
+        }
+}
+
+.pakam_copy{
+        color: var(--primary-green);
+        letter-spacing: -0.5px;
+        font-size: 16px;
+        line-height: 28px;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 56px;
 }

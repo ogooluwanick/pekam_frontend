@@ -1,8 +1,12 @@
-import React from 'react'
+import "./Signup.scss"
 
 const Signup = () => {
+        document.title = "Pakam | Signup";
+
   return (
-    <div>Signup</div>
+    <div>
+        
+    </div>
   )
 }
 

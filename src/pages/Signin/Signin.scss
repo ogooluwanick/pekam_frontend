@@ -1,0 +1,29 @@
+form {
+        margin-top: 35px;
+        margin-bottom: 66px;
+
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 41px 43px;
+
+        .grid-item {
+                background-color: #3498db;
+                color: #fff;
+                padding: 20px;
+                text-align: center;
+        }
+
+        @media (max-width: 720px) {
+                grid-template-columns: 1fr;
+        }
+          
+}
+
+.btn_box{
+        width: 100%;
+        max-width: 420px;     
+        margin-bottom: 16px;
+          
+}

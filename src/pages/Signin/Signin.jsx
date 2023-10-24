@@ -1,17 +1,21 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+
 
 
 import "./Signin.scss"
 import { SvgNoEye } from '../../icons';
-import toast from 'react-hot-toast';
 
 
 
 const Signin = () => {
         document.title = "Pakam | Login";
         const { register, handleSubmit, setValue, formState: { errors }} = useForm();
+        const navigate = useNavigate();
+
 
         const [showpass, setShowpass] = useState(false)
         const [loading, setLoading] = useState(false)
@@ -33,6 +37,9 @@ const Signin = () => {
 
                         setValue("username","")
                         setValue("password","")
+                        
+                        navigate("/assessment")
+
 
                 } 
                 catch (err) {
@@ -57,11 +64,11 @@ const Signin = () => {
 
                 <h1>Login</h1>
 
-                <form onSubmit={handleSubmit(submitHandler)}>
-                        <div className="grid-container">
+                <form className='signin_form' onSubmit={handleSubmit(submitHandler)}>
+                        <div className="signin_grid">
                                 <div className="formController">
                                         <label htmlFor="username">Username</label>
-                                        <input type="text" name='username' placeholder='Enter your username'  disabled={loading}
+                                        <input type="text" name='username' placeholder='Enter your Username'  disabled={loading}
                                                 {
                                                         ...register(      "username",
                                                                                 {
@@ -89,7 +96,7 @@ const Signin = () => {
                                 </div>
                         </div>
 
-                        <div className="btn_box">
+                        <div className="signin_btn">
                                 <button className='primary_btn' type='submit' disabled={loading}>
                                         {loading ? "Loading..." : "Log In"}
                                 </button>

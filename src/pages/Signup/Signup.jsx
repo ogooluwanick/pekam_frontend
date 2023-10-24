@@ -5,11 +5,12 @@ import toast from 'react-hot-toast';
 
 import "./Signup.scss"
 import { SvgNoEye } from '../../icons';
-
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
         document.title = "Pakam | Signup";
         const { register, handleSubmit, setValue, formState: { errors }} = useForm();
+        const navigate = useNavigate();
 
         const [showpass, setShowpass] = useState(false)
         const [loading, setLoading] = useState(false)
@@ -35,6 +36,8 @@ const Signup = () => {
                         setValue("lname","")
                         setValue("username","")
                         setValue("password","")
+
+                        navigate("/assessment")
                 } 
                 catch (err) {
                         console.log("data",err)
@@ -59,8 +62,8 @@ const Signup = () => {
 
                         <h1>Create Account</h1>
 
-                        <form onSubmit={handleSubmit(submitHandler)}>
-                                <div className="grid-container">
+                        <form className='signup_form' onSubmit={handleSubmit(submitHandler)}>
+                                <div className="signup_grid">
 
                                         <div className="formController">
                                                 <label htmlFor="fname">First name</label>
@@ -86,7 +89,7 @@ const Signup = () => {
                                         </div>
                                         <div className="formController">
                                                 <label htmlFor="username">Username</label>
-                                                <input type="text" name='username' placeholder='Enter your username'  disabled={loading}
+                                                <input type="text" name='username' placeholder='Enter your Username'  disabled={loading}
                                                         {
                                                                 ...register(      "username",
                                                                                         {
@@ -116,7 +119,7 @@ const Signup = () => {
                                         </div>
                                 </div>
 
-                                <div className="btn_box">
+                                <div className="signup_btn">
                                         <button className='primary_btn' type='submit' disabled={loading}>
                                                 {loading ? "Loading..." : "Sign up"}
                                         </button>
@@ -124,7 +127,7 @@ const Signup = () => {
                         </form>
 
                         <p className="helperLinks">
-                                Forgot Password? <a href='/#'>Retrieve Now</a>
+                                Have Account? <a href='/signin'>Retrieve Now</a>
                         </p>
                 </section>
                 <p className='pakam_copy'>Powered by Pakam Technology</p>

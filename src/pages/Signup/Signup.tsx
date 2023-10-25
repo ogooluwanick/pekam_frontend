@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form'
+import React,{ useState } from 'react';
+import { useForm,SubmitHandler } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast';
 
@@ -7,15 +7,26 @@ import "./Signup.scss"
 import { SvgNoEye } from '../../icons';
 import { useNavigate } from 'react-router-dom';
 
-const Signup = () => {
+// Define a TypeScript interface for form data.
+type FormData = {
+        fname: string;
+        lname: string;
+        username: string;
+        password: string;
+};
+      
+
+const Signup: React.FC = () => {
+
         document.title = "Pakam | Signup";
-        const { register, handleSubmit, setValue, formState: { errors }} = useForm();
+        const { register, handleSubmit, setValue, formState: { errors }} = useForm<FormData>();
         const navigate = useNavigate();
 
         const [showpass, setShowpass] = useState(false)
         const [loading, setLoading] = useState(false)
 
-        const submitHandler = async ({ fname, lname, username, password }) =>{
+        // Handle form submission when the user signs up.
+        const submitHandler: SubmitHandler<FormData> = async ({  fname, lname, username, password }) =>{
                 console.log("test",fname, lname, username, password)
 
                 setLoading(true)
@@ -67,7 +78,7 @@ const Signup = () => {
 
                                         <div className="formController">
                                                 <label htmlFor="fname">First name</label>
-                                                <input type="text" name='fname' placeholder='Enter your First name' autoFocus disabled={loading}
+                                                <input type="text"  placeholder='Enter your First name' autoFocus disabled={loading}
                                                         {...register(      "fname",
                                                                                 {
                                                                                         required:"Don't forget your first name. 😂",
@@ -78,7 +89,7 @@ const Signup = () => {
                                         </div>
                                         <div className="formController">
                                                 <label htmlFor="lname">Last name</label>
-                                                <input type="text" name='lname' placeholder='Enter your Last name'  disabled={loading}
+                                                <input type="text"  placeholder='Enter your Last name'  disabled={loading}
                                                         {...register(      "lname",
                                                                 {
                                                                         required:"Don't forget your last name. 😂",
@@ -89,7 +100,7 @@ const Signup = () => {
                                         </div>
                                         <div className="formController">
                                                 <label htmlFor="username">Username</label>
-                                                <input type="text" name='username' placeholder='Enter your Username'  disabled={loading}
+                                                <input type="text" placeholder='Enter your Username'  disabled={loading}
                                                         {
                                                                 ...register(      "username",
                                                                                         {
@@ -104,7 +115,7 @@ const Signup = () => {
                                         </div>
                                         <div className="formController">
                                                 <label htmlFor="password">Password</label>
-                                                <input type={showpass?"text":"password"} name='password' placeholder='Enter your Password'  disabled={loading}  
+                                                <input type={showpass?"text":"password"}  placeholder='Enter your Password'  disabled={loading}  
                                                         {
                                                         ...register(      "password",
                                                                                 {

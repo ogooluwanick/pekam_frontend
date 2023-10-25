@@ -1,3 +1,4 @@
+import React from "react"
 import { BrowserRouter as Router, Route, Navigate, Routes } from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
 
@@ -10,7 +11,9 @@ function App() {
   return (
         <Router>
                 <main className="App">
-                        <Toaster />
+                        <Toaster />        {/* Display a notification Toaster for displaying toast messages. */}
+
+                        {/* Define routes for different page components using the Routes component. */}
                         <Routes>
                                         <Route   path='/' element={<Navigate to="/signup"/>}/>
                                         <Route   path='/signup' element={<Signup/>}/>

@@ -6,6 +6,7 @@ module.exports = function (app) {
                 createProxyMiddleware({
                         target: 'https://assessment.pakam.ng',
                         changeOrigin: true,
+                        secure: false, 
                 })
         );
 };

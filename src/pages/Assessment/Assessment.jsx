@@ -12,12 +12,13 @@ const Assessment = () => {
 
         const [showModal, setShowModal] = useState(false)
         const [products, setProducts] = useState([])
+        const [page, setPage] = useState(1)
 
         const fetchData = async() =>{
 
 
                 try {
-                        let data = await axios.get(`/api/product/list?page=${1}&limit=${5}`);
+                        let data = await axios.get(`/api/product/list?page=${page}&limit=${8}`);
                         console.log(data)
                         setProducts(data.data.data)
                 } 
@@ -34,8 +35,8 @@ const Assessment = () => {
         useEffect(() => {
                 fetchData()
         
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [])
-        
 
   return (
     <div className='assessment_page'>
@@ -62,13 +63,13 @@ const Assessment = () => {
 
                                 <div className="pagination_controls">
                                         <span>
-                                                01 of 01
+                                                {`01 of 0${page}`}
                                         </span>
                                         <div className="p_btns">
-                                               <span>
+                                               <span onClick={()=>{ setPage(val=>val<=1 ? 1 : val-1) ; fetchData() }  }>
                                                         <SvgCaretLeft/>
                                                 </span> 
-                                               <span>
+                                               <span onClick={()=>{ setPage(val=>val+1); fetchData() }}>
                                                         <SvgCaretRight/>
                                                 </span> 
                                         </div>

@@ -16,33 +16,31 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal }) => {
 
   const [loading, setLoading] = useState(false);
 
-  const submitHandler = async ({ name, desc, qty, price }: any) => {
-    console.log("test", name, desc, qty);
+  const submitHandler = async ({ name, desc, qty }: any) => {
     setLoading(true);
 
     try {
       let data = await axios.post('/api/product/create', {
-        name,
-        description: desc,
-        price,
-        quantity: qty,
+                name,
+                description: desc,
+                quantity: qty,
       });
 
       console.log("data", data);
 
-      toast.success(data.data.message, { duration: 3500 });
+      toast.success("Product created successfully", { duration: 3500 });
 
       setValue("name", "");
       setValue("desc", "");
       setValue("qty", "");
-      setValue("price", "");
 
       setShowModal(false);
+      window.location.reload()
     } catch (err) {
         console.log("data", err);
 
         if (err instanceof Error) {
-          toast.error(err.message, {
+          toast.error("Process failed", {
             duration: 3500,
           });
         } else {

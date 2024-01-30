@@ -12,6 +12,7 @@ import {AnimatePresence} from "framer-motion"
 
 interface Product {
   name: string;
+  _id: string;
   description: string;
   quantity: number;
 }
@@ -21,25 +22,26 @@ const Assessment: React.FC = () => {
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
+  const [productIndex, setProductIndex] = useState<string>("");
   const [products, setProducts] = useState<Product[]>([]);
   const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
   const fetchData = async () => {
     try {
-      let data = await axios.get(`/api/product/list?page=${page}&limit=${8}`);
-      console.log(data);
-      setProducts(data.data.data);
-    } catch (err) {
+        let data = await axios.get(`/api/product/list?page=${page}&limit=${8}`);
+        console.log(data);
+        setProducts(data.data.products);
+        setTotalPages(data.data.pages)
+    } 
+    catch (err) {
         console.log("data", err);
 
         if (err instanceof Error) {
-          toast.error(err.message, {
-            duration: 3500,
-          });
+                toast.error("Failed to load products", {duration: 3500,});
         } else {
-          console.error("An error occurred:", err);
+                console.error("An error occurred:", err);
         }
-      
     }
   };
 
@@ -73,15 +75,15 @@ const Assessment: React.FC = () => {
 
                 <div className="pagination_controls">
                 <span>
-                        {`01 of 0${page}`}
+                        {`0${page} of 0${totalPages}`}
                 </span>
                 <div className="p_btns">
-                        <span onClick={() => { setPage(val => val <= 1 ? 1 : val - 1); fetchData() }}>
+                        <button onClick={() => { setPage(val => val <= 1 ? 1 : val - 1); fetchData() }} >
                         <SvgCaretLeft />
-                        </span>
-                        <span onClick={() => { setPage(val => val + 1); fetchData() }}>
+                        </button>
+                        <button onClick={() => { setPage(val => val < totalPages ? val + 1 : val); fetchData() }}>
                         <SvgCaretRight />
-                        </span>
+                        </button>
                 </div>
                 </div>
                 </div>
@@ -103,7 +105,7 @@ const Assessment: React.FC = () => {
                                 <td className=''>{item.quantity}</td>
                                 <td className='action'>
                                         <div className="pekam_btn primary">Update</div>
-                                        <div className="pekam_btn secondary" onClick={()=>setDeleteModal(true)}>Delete</div>
+                                        <div className="pekam_btn secondary" onClick={()=>{ setDeleteModal(true); setProductIndex(item._id) }}>Delete</div>
                                 </td>
                                 </tr>
                         ))
@@ -119,7 +121,7 @@ const Assessment: React.FC = () => {
         </AnimatePresence>
         <AnimatePresence exitBeforeEnter >
         {
-                deleteModal ? <DeleteModal showModal={deleteModal} setShowModal={setDeleteModal} /> : undefined
+                deleteModal ? <DeleteModal showModal={deleteModal} setShowModal={setDeleteModal} productIndex={productIndex} /> : undefined
         }
         </AnimatePresence>
         </div>

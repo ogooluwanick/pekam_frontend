@@ -33,15 +33,15 @@ const Signup: React.FC = () => {
 
                 try {
                         let data = await axios.post('/api/user/register', {
-                                fname,
-                                lname,
+                                firstName: fname,
+                                lastName: lname,
                                 username,
                                 password,
                         });
 
                         console.log("data",data)
                         
-                        toast.success(data.data.message,{ duration: 3500,})
+                        toast.success("Registration completed",{ duration: 3500,})
                         
                         setValue("fname","")
                         setValue("lname","")
@@ -53,7 +53,7 @@ const Signup: React.FC = () => {
                 catch (err) {
                         console.log("data",err)
 
-                        toast.error("Signup unsuccessful",
+                        toast.error("Registration unsuccessful",
                         {     
                                 duration: 3500,
                         });

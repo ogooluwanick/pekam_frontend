@@ -6,11 +6,12 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 import {motion} from "framer-motion"
 
 interface ModalProps {
+        productIndex: string;
         showModal: boolean;
         setShowModal: (show: boolean) => void;
 }
 
-const Modal: FC<ModalProps> = ({ showModal, setShowModal }) => {
+const Modal: FC<ModalProps> = ({ showModal, setShowModal, productIndex }) => {
   const modalRef = useOnclickOutside(() => setShowModal(false));
   const { handleSubmit } = useForm();
 
@@ -20,15 +21,14 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal }) => {
     setLoading(true);
 
     try {
-      let data = await axios.post('/api/product/create', {
-        _id:"",
-      });
+      let data = await axios.delete(`/api/product/delete/${productIndex}`);
 
       console.log("data", data);
 
       toast.success("Deleted Successfully!", { duration: 3500 });
 
       setShowModal(false);
+      window.location.reload()
     } catch (err) {
         console.log("data", err);
 

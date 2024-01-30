@@ -45,7 +45,7 @@ const Signin: React.FC = () => {
                         console.log("data", err);
 
                         if (err instanceof Error) {
-                                toast.error(err.message, {
+                                toast.error("Invalid Email/Password", {
                                 duration: 3500,
                         });
                         } else {

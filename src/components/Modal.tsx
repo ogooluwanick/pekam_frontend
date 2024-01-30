@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import useOnclickOutside from 'react-cool-onclickoutside';
+import {motion} from "framer-motion"
 
 interface ModalProps {
         showModal: boolean;
@@ -55,7 +56,7 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal }) => {
   return (
     <div className='modal_box'>
       <div className="black-overlay" />
-      <form className='modal' onSubmit={handleSubmit(submitHandler)} ref={modalRef}>
+      <motion.form  initial={{ y: "100%" ,opacity:0 }} animate={{ y: 0 ,opacity:1}} exit={{ y: "100%" ,opacity:0}} transition={{ type: "spring", bounce: 0.3, duration: 0.35 }}   className='modal' onSubmit={handleSubmit(submitHandler)} ref={modalRef}>
         <h1>Create Assessment</h1>
         <div className="signup_grid" style={{ marginTop: "52px" }}>
           <div className="formController">
@@ -98,19 +99,7 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal }) => {
             {errors.qty && typeof errors.qty.message === 'string' ? <p className='desc error'>{errors.qty.message}</p> : null}
 
           </div>
-          <div className="formController">
-            <label htmlFor="price">Price</label>
-            <input
-              type="number"
-              placeholder='Price'
-              disabled={loading}
-              {...register("price", {
-                required: "Price please. 😂",
-              })}
-            />
-            {errors.price && typeof errors.price.message === 'string' ? <p className='desc error'>{errors.price.message}</p> : null}
-
-          </div>
+        
         </div>
 
         <div className="modal_btn">
@@ -118,7 +107,7 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal }) => {
             {loading ? "Loading..." : "Submit"}
           </button>
         </div>
-      </form>
+      </motion.form>
     </div>
   );
 };

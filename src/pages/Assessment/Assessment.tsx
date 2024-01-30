@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '../../components/Modal';
+import DeleteModal from '../../components/DeleteModal';
+import MotionWrap from '../../components/MotionWrap';
 import SideMenu from '../../components/SideMenu';
 import "./Assessment.scss";
 import { SvgCaretLeft, SvgCaretRight, SvgRefresh } from '../../icons';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import {AnimatePresence} from "framer-motion"
+
 
 interface Product {
   name: string;
@@ -16,6 +20,7 @@ const Assessment: React.FC = () => {
   document.title = "Pakam | Assessment";
 
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [page, setPage] = useState<number>(1);
 
@@ -44,67 +49,81 @@ const Assessment: React.FC = () => {
   }, [page]);
 
   return (
-    <div className='assessment_page'>
-      <SideMenu />
-      <div className="content">
-        <header>
-          <h1>Assessment</h1>
-        </header>
-        <div className="btnBox">
-          <button className="primary_btn" onClick={() => setShowModal(val => !val)}>
-            Create
-          </button>
-        </div>
+        <MotionWrap>
+        <div className='assessment_page'>
+        <SideMenu />
+        <div className="content">
+                <header>
+                <h1>Assessment</h1>
+                </header>
+                <div className="btnBox">
+                <button className="primary_btn" onClick={() => setShowModal(val => !val)}>
+                Create
+                </button>
+                </div>
 
-        <div className="pakam_table">
-          <div className="tableControllers">
-            <button onClick={() => window.location.reload()}>
-              <SvgRefresh />
-              <span>
-                Refresh
-              </span>
-            </button>
+                <div className="pakam_table">
+                <div className="tableControllers">
+                <button onClick={() => window.location.reload()}>
+                <SvgRefresh />
+                <span>
+                        Refresh
+                </span>
+                </button>
 
-            <div className="pagination_controls">
-              <span>
-                {`01 of 0${page}`}
-              </span>
-              <div className="p_btns">
-                <span onClick={() => { setPage(val => val <= 1 ? 1 : val - 1); fetchData() }}>
-                  <SvgCaretLeft />
+                <div className="pagination_controls">
+                <span>
+                        {`01 of 0${page}`}
                 </span>
-                <span onClick={() => { setPage(val => val + 1); fetchData() }}>
-                  <SvgCaretRight />
-                </span>
-              </div>
-            </div>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th><input type="checkbox" name="" id="" /> Name</th>
-                <th>Description</th>
-                <th className='qty'>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                products?.map((item, index) => (
-                  <tr key={index}>
-                    <td><input type="checkbox" name="" id="" /> {item.name}</td>
-                    <td>{item.description}</td>
-                    <td className='qty'>{item.quantity}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
+                <div className="p_btns">
+                        <span onClick={() => { setPage(val => val <= 1 ? 1 : val - 1); fetchData() }}>
+                        <SvgCaretLeft />
+                        </span>
+                        <span onClick={() => { setPage(val => val + 1); fetchData() }}>
+                        <SvgCaretRight />
+                        </span>
+                </div>
+                </div>
+                </div>
+                <table>
+                <thead>
+                <tr>
+                        <th><input type="checkbox" name="" id="" /> Name</th>
+                        <th>Description</th>
+                        <th className=''>Quantity</th>
+                        <th className='action'>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                        products?.map((item, index) => (
+                                <tr key={index}>
+                                <td><input type="checkbox" name="" id="" /> {item.name}</td>
+                                <td>{item.description}</td>
+                                <td className=''>{item.quantity}</td>
+                                <td className='action'>
+                                        <div className="pekam_btn primary">Update</div>
+                                        <div className="pekam_btn secondary" onClick={()=>setDeleteModal(true)}>Delete</div>
+                                </td>
+                                </tr>
+                        ))
+                }
+                </tbody>
+                </table>
+                </div>
         </div>
-      </div>
-      {
-        showModal ? <Modal showModal={showModal} setShowModal={setShowModal} /> : undefined
-      }
-    </div>
+        <AnimatePresence exitBeforeEnter >
+        {
+                showModal ? <Modal showModal={showModal} setShowModal={setShowModal} /> : undefined
+        }
+        </AnimatePresence>
+        <AnimatePresence exitBeforeEnter >
+        {
+                deleteModal ? <DeleteModal showModal={deleteModal} setShowModal={setDeleteModal} /> : undefined
+        }
+        </AnimatePresence>
+        </div>
+        </MotionWrap>
   )
 }
 

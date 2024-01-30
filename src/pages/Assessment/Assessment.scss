@@ -5,10 +5,16 @@
                 height: 100vh;
                 width: 248px;
                 background: linear-gradient(to bottom, #008300 0%, #005700 100%);
+
+                @media screen  and (max-width:975px){
+                        display: none;
+                }
         }
 
         .content{
                 flex: 1;
+                height: 100vh;
+                overflow-y: scroll;
                 padding: 30px;
 
                 h1{
@@ -29,11 +35,14 @@
 
         .pakam_table{
                 background-color: #fff;
+                position: relative;
 
                 .tableControllers{
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
+                        position: sticky;
+                        top: 0;
 
 
                         button{
@@ -114,10 +123,11 @@
 
                 }
 
+                overflow-x: scroll;
+
                 table{
                         width: 100%;
-                        min-width: 700px;
-                        overflow-x: scroll;
+                        table-layout: auto; 
 
                         tr{
                                 display: flex;
@@ -128,6 +138,7 @@
                                         align-items: center;
                                         gap: 24px;
                                         text-align: left;
+                                        min-width: 180px;
                                 }
 
                                 th{
@@ -148,6 +159,44 @@
 
                                 .qty{
                                         flex: 1;
+                                }
+
+                                .action{
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        gap: 24px;
+
+                                        .pekam_btn{
+                                                border-radius: 6px;
+                                                text-align: center;
+                                                padding: 8px 16px;
+                                                cursor: pointer;
+                                                transition: all .25s ease-in-out;
+                                                
+                                                &.primary{
+                                                        border: 1px solid border linear-gradient(178.54deg, #008300 -24.78%, #005700 98.76%);
+                                                        background: #028301;
+                                                        color: #fff;
+                                                        transition: all .25s ease-in-out;
+
+                                                        
+                                                        &:hover, &:focus{
+                                                                background: linear-gradient(178.54deg, #008300 -24.78%, #005700 98.76%), linear-gradient(0deg, #008300, #008300);
+                                                        }
+                                                }
+
+                                                &.secondary{
+                                                        border: 1px solid #1E1E1E;
+                                                        color: #222D33;
+
+                                                        &:hover, &:focus{
+                                                                background: linear-gradient(178.54deg, #008300 -24.78%, #005700 98.76%), linear-gradient(0deg, #008300, #008300);
+                                                                color: #fff;
+                                                                border: 1px solid border linear-gradient(178.54deg, #008300 -24.78%, #005700 98.76%);
+                                                        }
+                                                }
+                                        }
                                 }
 
                                 input{

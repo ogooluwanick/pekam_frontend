@@ -5,15 +5,13 @@ import toast from 'react-hot-toast';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import {motion} from "framer-motion"
 
-interface Product {
-        name: string;
-        _id: string;
-        description: string;
-        quantity: number;
-}
-
 interface ModalProps {
-        productIndex: Product;
+        productIndex: {
+                name: string;
+                _id: string;
+                description: string;
+                quantity: number; 
+        };
         showModal: boolean;
         setShowModal: (show: boolean) => void;
 }

@@ -24,7 +24,12 @@ const Assessment: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [updateModal, setUpdateModal] = useState<boolean>(false);
-  const [productIndex, setProductIndex] = useState<Product>();
+  const [productIndex, setProductIndex] = useState<Product>({
+        name: '',
+        _id: '',
+        description: '',
+        quantity: 0,
+      });
   const [products, setProducts] = useState<Product[]>([]);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);

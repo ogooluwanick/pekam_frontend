@@ -6,15 +6,13 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 import {motion} from "framer-motion"
 
 
-interface Product {
-        name: string;
-        _id: string;
-        description: string;
-        quantity: number;
-      }
-
 interface ModalProps {
-        productIndex: Product;
+        productIndex: {
+                name: string;
+                _id: string;
+                description: string;
+                quantity: number;
+        };
         showModal: boolean;
         setShowModal: (show: boolean) => void;
 }
@@ -64,6 +62,7 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal, productIndex }) => {
         setValue("name", productIndex.name);
         setValue("desc", productIndex.description);
         setValue("qty", productIndex.quantity);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
 

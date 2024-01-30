@@ -5,11 +5,19 @@ import toast from 'react-hot-toast';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import {motion} from "framer-motion"
 
+interface Product {
+        name: string;
+        _id: string;
+        description: string;
+        quantity: number;
+}
+
 interface ModalProps {
-        productIndex: string;
+        productIndex: Product;
         showModal: boolean;
         setShowModal: (show: boolean) => void;
 }
+
 
 const Modal: FC<ModalProps> = ({ showModal, setShowModal, productIndex }) => {
   const modalRef = useOnclickOutside(() => setShowModal(false));
@@ -21,7 +29,7 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal, productIndex }) => {
     setLoading(true);
 
     try {
-      let data = await axios.delete(`/api/product/delete/${productIndex}`);
+      let data = await axios.delete(`/api/product/delete/${productIndex._id}`);
 
       console.log("data", data);
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '../../components/Modal';
 import DeleteModal from '../../components/DeleteModal';
+import UpdateModal from '../../components/UpdateModal';
 import MotionWrap from '../../components/MotionWrap';
 import SideMenu from '../../components/SideMenu';
 import "./Assessment.scss";
@@ -22,7 +23,8 @@ const Assessment: React.FC = () => {
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
-  const [productIndex, setProductIndex] = useState<string>("");
+  const [updateModal, setUpdateModal] = useState<boolean>(false);
+  const [productIndex, setProductIndex] = useState<Product>();
   const [products, setProducts] = useState<Product[]>([]);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
@@ -104,8 +106,8 @@ const Assessment: React.FC = () => {
                                 <td>{item.description}</td>
                                 <td className=''>{item.quantity}</td>
                                 <td className='action'>
-                                        <div className="pekam_btn primary">Update</div>
-                                        <div className="pekam_btn secondary" onClick={()=>{ setDeleteModal(true); setProductIndex(item._id) }}>Delete</div>
+                                        <div className="pekam_btn primary" onClick={()=>{ setUpdateModal(true); setProductIndex(item) }}>Update</div>
+                                        <div className="pekam_btn secondary" onClick={()=>{ setDeleteModal(true); setProductIndex(item) }}>Delete</div>
                                 </td>
                                 </tr>
                         ))
@@ -122,6 +124,11 @@ const Assessment: React.FC = () => {
         <AnimatePresence exitBeforeEnter >
         {
                 deleteModal ? <DeleteModal showModal={deleteModal} setShowModal={setDeleteModal} productIndex={productIndex} /> : undefined
+        }
+        </AnimatePresence>
+        <AnimatePresence exitBeforeEnter >
+        {
+                updateModal ? <UpdateModal showModal={updateModal} setShowModal={setUpdateModal} productIndex={productIndex} /> : undefined
         }
         </AnimatePresence>
         </div>

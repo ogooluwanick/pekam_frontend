@@ -35,7 +35,7 @@ const Signin: React.FC = () => {
 
                         console.log("data", data);
 
-                        toast.success(data.data.message, { duration: 3500 });
+                        toast.success("Login successful", { duration: 3500 });
 
                         setValue("username", "");
                         setValue("password", "");

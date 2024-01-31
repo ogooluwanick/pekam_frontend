@@ -36,7 +36,7 @@ const Assessment: React.FC = () => {
 console.log(page)
   const fetchData = async () => {
     try {
-        let data = await axios.get(`/api/product/list?page=${page}&limit=${8}`);
+        let data = await axios.get(`https://pekam-backend.onrender.com/api/product/list?page=${page}&limit=${8}`);
         console.log(data);
         setProducts(data.data.products);
         setTotalPages(data.data.pages)

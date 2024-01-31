@@ -27,7 +27,7 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal, productIndex }) => {
     setLoading(true);
 
     try {
-      let data = await axios.put(`/api/product/update/${productIndex._id}`, {
+      let data = await axios.put(`https://pekam-backend.onrender.com/api/product/update/${productIndex._id}`, {
                 name,
                 description: desc,
                 quantity: qty,

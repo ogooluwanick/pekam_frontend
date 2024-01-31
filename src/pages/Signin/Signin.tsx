@@ -28,7 +28,7 @@ const Signin: React.FC = () => {
                 setLoading(true);
 
                 try {
-                        let data = await axios.post('/api/user/login', {
+                        let data = await axios.post('https://pekam-backend.onrender.com/api/user/login', {
                                 username,
                                 password,
                         });

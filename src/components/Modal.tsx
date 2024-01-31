@@ -20,7 +20,7 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal }) => {
     setLoading(true);
 
     try {
-      let data = await axios.post('/api/product/create', {
+      let data = await axios.post('https://pekam-backend.onrender.com/api/product/create', {
                 name,
                 description: desc,
                 quantity: qty,

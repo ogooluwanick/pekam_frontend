@@ -32,7 +32,7 @@ const Signup: React.FC = () => {
                 setLoading(true)
 
                 try {
-                        let data = await axios.post('/api/user/register', {
+                        let data = await axios.post('https://pekam-backend.onrender.com/api/user/register', {
                                 firstName: fname,
                                 lastName: lname,
                                 username,

@@ -27,7 +27,7 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal, productIndex }) => {
     setLoading(true);
 
     try {
-      let data = await axios.delete(`/api/product/delete/${productIndex._id}`);
+      let data = await axios.delete(`https://pekam-backend.onrender.com/api/product/delete/${productIndex._id}`);
 
       console.log("data", data);
 

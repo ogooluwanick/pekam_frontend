@@ -33,7 +33,7 @@ const Assessment: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-
+console.log(page)
   const fetchData = async () => {
     try {
         let data = await axios.get(`/api/product/list?page=${page}&limit=${8}`);

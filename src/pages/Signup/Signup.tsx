@@ -27,20 +27,17 @@ const Signup: React.FC = () => {
 
         // Handle form submission when the user signs up.
         const submitHandler: SubmitHandler<FormData> = async ({  fname, lname, username, password }) =>{
-                console.log("test",fname, lname, username, password)
 
                 setLoading(true)
 
                 try {
-                        let data = await axios.post('https://pekam-backend.onrender.com/api/user/register', {
+                        await axios.post('https://pekam-backend.onrender.com/api/user/register', {
                                 firstName: fname,
                                 lastName: lname,
                                 username,
                                 password,
                         });
 
-                        console.log("data",data)
-                        
                         toast.success("Registration completed",{ duration: 3500,})
                         
                         setValue("fname","")
@@ -51,7 +48,7 @@ const Signup: React.FC = () => {
                         navigate("/assessment")
                 } 
                 catch (err) {
-                        console.log("data",err)
+                        console.log("err",err)
 
                         toast.error("Registration unsuccessful",
                         {     

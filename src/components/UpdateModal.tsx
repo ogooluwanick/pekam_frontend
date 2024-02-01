@@ -27,13 +27,11 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal, productIndex }) => {
     setLoading(true);
 
     try {
-      let data = await axios.put(`https://pekam-backend.onrender.com/api/product/update/${productIndex._id}`, {
+        await axios.put(`https://pekam-backend.onrender.com/api/product/update/${productIndex._id}`, {
                 name,
                 description: desc,
                 quantity: qty,
       });
-
-      console.log("data", data);
 
       toast.success("Product created successfully", { duration: 3500 });
 
@@ -44,7 +42,7 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal, productIndex }) => {
       setShowModal(false);
       window.location.reload()
     } catch (err) {
-        console.log("data", err);
+        console.log("err", err);
 
         if (err instanceof Error) {
           toast.error("Process failed", {

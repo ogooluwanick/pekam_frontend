@@ -27,16 +27,14 @@ const Modal: FC<ModalProps> = ({ showModal, setShowModal, productIndex }) => {
     setLoading(true);
 
     try {
-      let data = await axios.delete(`https://pekam-backend.onrender.com/api/product/delete/${productIndex._id}`);
-
-      console.log("data", data);
+      await axios.delete(`https://pekam-backend.onrender.com/api/product/delete/${productIndex._id}`);
 
       toast.success("Deleted Successfully!", { duration: 3500 });
 
       setShowModal(false);
       window.location.reload()
     } catch (err) {
-        console.log("data", err);
+        console.log("err", err);
 
         if (err instanceof Error) {
                 toast.error(err.message, {

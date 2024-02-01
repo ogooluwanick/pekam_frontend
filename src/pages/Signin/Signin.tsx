@@ -23,17 +23,14 @@ const Signin: React.FC = () => {
 
         // Handle form submission when the user signs up.
         const submitHandler: SubmitHandler<FormData> = async ({ username, password }) => {
-                console.log("test", username, password);
 
                 setLoading(true);
 
                 try {
-                        let data = await axios.post('https://pekam-backend.onrender.com/api/user/login', {
+                        await axios.post('https://pekam-backend.onrender.com/api/user/login', {
                                 username,
                                 password,
                         });
-
-                        console.log("data", data);
 
                         toast.success("Login successful", { duration: 3500 });
 
@@ -42,7 +39,7 @@ const Signin: React.FC = () => {
 
                         navigate("/assessment");
                 } catch (err) {
-                        console.log("data", err);
+                        console.log("err", err);
 
                         if (err instanceof Error) {
                                 toast.error("Invalid Email/Password", {

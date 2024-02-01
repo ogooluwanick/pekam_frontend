@@ -33,16 +33,16 @@ const Assessment: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-console.log(page)
+
   const fetchData = async () => {
     try {
         let data = await axios.get(`https://pekam-backend.onrender.com/api/product/list?page=${page}&limit=${8}`);
-        console.log(data);
+
         setProducts(data.data.products);
         setTotalPages(data.data.pages)
     } 
     catch (err) {
-        console.log("data", err);
+        console.log("err", err);
 
         if (err instanceof Error) {
                 toast.error("Failed to load products", {duration: 3500,});

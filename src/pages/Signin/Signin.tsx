@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 
 import "./Signin.scss";
 import { SvgNoEye } from '../../icons';
+import MotionWrap from '../../components/MotionWrap';
 
 // Define a TypeScript interface for form data.
 type FormData = {
@@ -54,61 +55,63 @@ const Signin: React.FC = () => {
         };
 
   return (
-    <div className="pageDialog">
-        <section>
-                <div className="global_logo">
-                        <img src="/imgs/pakam-icon.svg" alt="pakam logo" />
-                        <span>Pakam</span>
+        <MotionWrap>    
+                <div className="pageDialog">
+                        <section>
+                                <div className="global_logo">
+                                        <img src="/imgs/pakam-icon.svg" alt="pakam logo" />
+                                        <span>Pakam</span>
+                                </div>
+
+                                <h1>Login</h1>
+
+                                <form className='signin_form' onSubmit={handleSubmit(submitHandler)}>
+                                        <div className="signin_grid">
+                                                <div className="formController">
+                                                        <label htmlFor="username">Username</label>
+                                                        <input
+                                                                type="text"
+                                                                placeholder='Enter your Username'
+                                                                disabled={loading}
+                                                                {...register("username", {
+                                                                required: "Kindly provide your username. 😭",
+                                                                })}
+                                                        />
+                                                        {errors.username ? <p className=' desc error'>{errors.username.message}</p> : ""}
+                                                </div>
+                                                <div className="formController">
+                                                        <label htmlFor="password">Password</label>
+                                                        <input
+                                                                type={showpass ? "text" : "password"}
+                                                                placeholder='Enter your Password'
+                                                                disabled={loading}
+                                                                {...register("password", {
+                                                                required: "Kindly provide your password. 😭",
+                                                                })}
+                                                        />
+                                                        <SvgNoEye onClick={() => setShowpass(val => !val)} />
+                                                        {errors.password ? (
+                                                                <p className=' desc error'>{errors.password.message}</p>
+                                                        ) : (
+                                                                <p className="desc">Must be 8 characters long, Uppercase inclusive</p>
+                                                        )}
+                                                </div>
+                                        </div>
+
+                                        <div className="signin_btn">
+                                                <button className='primary_btn' type='submit' disabled={loading}>
+                                                        {loading ? "Loading..." : "Log In"}
+                                                </button>
+                                        </div>
+                                </form>
+
+                                <p className="helperLinks">
+                                        Forgot Password? <a href='/#'>Retrieve Now</a>
+                                </p>
+                        </section>
+                        <p className='pakam_copy'>Powered by Pakam Technology</p>
                 </div>
-
-                <h1>Login</h1>
-
-                <form className='signin_form' onSubmit={handleSubmit(submitHandler)}>
-                        <div className="signin_grid">
-                                <div className="formController">
-                                        <label htmlFor="username">Username</label>
-                                        <input
-                                                type="text"
-                                                placeholder='Enter your Username'
-                                                disabled={loading}
-                                                {...register("username", {
-                                                required: "Kindly provide your username. 😭",
-                                                })}
-                                        />
-                                        {errors.username ? <p className=' desc error'>{errors.username.message}</p> : ""}
-                                </div>
-                                <div className="formController">
-                                        <label htmlFor="password">Password</label>
-                                        <input
-                                                type={showpass ? "text" : "password"}
-                                                placeholder='Enter your Password'
-                                                disabled={loading}
-                                                {...register("password", {
-                                                required: "Kindly provide your password. 😭",
-                                                })}
-                                        />
-                                        <SvgNoEye onClick={() => setShowpass(val => !val)} />
-                                        {errors.password ? (
-                                                <p className=' desc error'>{errors.password.message}</p>
-                                        ) : (
-                                                <p className="desc">Must be 8 characters long, Uppercase inclusive</p>
-                                        )}
-                                </div>
-                        </div>
-
-                        <div className="signin_btn">
-                                <button className='primary_btn' type='submit' disabled={loading}>
-                                        {loading ? "Loading..." : "Log In"}
-                                </button>
-                        </div>
-                </form>
-
-                <p className="helperLinks">
-                        Forgot Password? <a href='/#'>Retrieve Now</a>
-                </p>
-        </section>
-        <p className='pakam_copy'>Powered by Pakam Technology</p>
-    </div>
+        </MotionWrap>   
   );
 };
 
